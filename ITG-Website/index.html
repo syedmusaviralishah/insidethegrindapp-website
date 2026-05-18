@@ -1,0 +1,3191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside the Grind – Where Athletes Tell Their Real Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1120;
+    --navy-mid: #111827;
+    --navy-light: #1a2540;
+    --gold: #C9972A;
+    --gold-light: #E8B84B;
+    --gold-pale: #F5D98A;
+    --white: #F7F5F0;
+    --gray: #A8B4C2;
+    --gray-mid: #6B7A8D;
+    --border: rgba(201, 151, 42, 0.18);
+    --glow: rgba(201, 151, 42, 0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,151,42,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,151,42,0.04) 0%, transparent 60%),
+                linear-gradient(160deg, #0B1120 0%, #0d1629 60%, #0B1120 100%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,151,42,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,151,42,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 40%, black 30%, transparent 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(201,151,42,0.1);
+    border: 1px solid rgba(201,151,42,0.3);
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 3px;
+    margin-bottom: 1.6rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: rgba(247,245,240,0.85);
+    max-width: 520px;
+    margin-bottom: 2.4rem;
+    font-weight: 400;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(201,151,42,0.25);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,151,42,0.35);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid rgba(247,245,240,0.2);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    background: rgba(201,151,42,0.05);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .stat-item { text-align: left; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .hero-visual {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42%;
+    max-width: 540px;
+    z-index: 2;
+    animation: floatIn 1s 0.3s ease both;
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(calc(-50% + 30px)); }
+    to { opacity: 1; transform: translateY(-50%); }
+  }
+
+  .hero-phone-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-phone-glow {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(201,151,42,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+  }
+
+  .phone-mockup {
+    position: relative;
+    width: 280px;
+    height: 560px;
+    background: var(--navy-light);
+    border-radius: 40px;
+    border: 2px solid rgba(201,151,42,0.3);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .phone-screen {
+    position: absolute;
+    inset: 6px;
+    background: var(--navy-mid);
+    border-radius: 34px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phone-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .phone-app-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .phone-logo-small {
+    width: 24px;
+    height: 24px;
+    background: var(--gold);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10px;
+    color: var(--navy);
+  }
+
+  .phone-app-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .phone-content { padding: 12px 14px; flex: 1; overflow: hidden; }
+
+  .athlete-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,151,42,0.15);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+
+  .athlete-card-top {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 8px;
+  }
+
+  .athlete-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .athlete-meta { flex: 1; }
+  .athlete-name { font-size: 11px; font-weight: 700; color: var(--white); }
+  .athlete-sport { font-size: 9px; color: var(--gray); }
+
+  .subscriber-badge {
+    background: rgba(201,151,42,0.15);
+    color: var(--gold-light);
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .journal-preview {
+    font-size: 9.5px;
+    color: rgba(247,245,240,0.65);
+    line-height: 1.5;
+  }
+
+  .journal-preview strong { color: var(--white); }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .card-time { font-size: 8px; color: var(--gray); }
+
+  .card-actions { display: flex; gap: 8px; }
+  .card-action { font-size: 9px; color: var(--gray); }
+
+  .earnings-widget {
+    background: linear-gradient(135deg, rgba(201,151,42,0.15) 0%, rgba(201,151,42,0.05) 100%);
+    border: 1px solid rgba(201,151,42,0.25);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .earnings-label { font-size: 9px; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .earnings-amount { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--gold); line-height: 1; }
+  .earnings-sub { font-size: 8px; color: var(--gray); margin-top: 2px; }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(26,37,64,0.4);
+    padding: 1.4rem 5%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    overflow: hidden;
+  }
+
+  .trust-label {
+    font-size: 0.75rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .trust-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .trust-marquee { flex: 1; overflow: hidden; position: relative; min-width: 0; }
+  .trust-marquee::before, .trust-marquee::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
+  }
+  .trust-marquee::before { left: 0; background: linear-gradient(to right, rgba(26,37,64,0.95), transparent); }
+  .trust-marquee::after  { right: 0; background: linear-gradient(to left, rgba(26,37,64,0.95), transparent); }
+  .trust-scroll {
+    display: flex; align-items: center;
+    animation: scroll-trust 35s linear infinite;
+    white-space: nowrap; width: max-content;
+    will-change: transform;
+  }
+  .trust-marquee:hover .trust-scroll { animation-play-state: paused; }
+  @keyframes scroll-trust {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  .trust-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(247,245,240,0.7);
+    padding: 0 2.2rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .trust-item::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .trust-bar { padding: 1rem 4%; gap: 1rem; flex-wrap: nowrap; }
+    .trust-label { font-size: 0.65rem; letter-spacing: 0.08em; }
+    .trust-divider { height: 20px; }
+    .trust-item { font-size: 0.85rem; padding: 0 1.4rem; }
+    .trust-item::after { width: 4px; height: 4px; right: -2px; }
+    .trust-scroll { animation-duration: 30s; }
+    .trust-marquee::before, .trust-marquee::after { width: 30px; }
+  }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-pad { padding: 100px 5%; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title span { color: var(--gold); }
+
+  .section-sub {
+    color: rgba(247,245,240,0.78);
+    max-width: 560px;
+    font-size: 1.05rem;
+  }
+
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+  .text-center .section-label { margin-left: auto; margin-right: auto; }
+
+  /* ── PROBLEM / SOLUTION ── */
+  .problem-section { background: var(--navy-mid); }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-top: 4rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .problem-card {
+    background: rgba(255,255,255,0.02);
+    padding: 2.4rem 2.2rem;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .problem-card.solution {
+    background: rgba(201,151,42,0.06);
+    border-color: rgba(201,151,42,0.2);
+  }
+
+  .p-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    font-size: 1.3rem;
+  }
+
+  .p-icon.red { background: rgba(239,68,68,0.1); }
+  .p-icon.gold { background: rgba(201,151,42,0.15); }
+
+  .problem-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .problem-card p { font-size: 0.93rem; color: rgba(247,245,240,0.78); line-height: 1.6; }
+
+  /* ── FEATURES ── */
+  .features-section { background: var(--navy); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 4rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .feature-card {
+    background: rgba(11,17,32,0.8);
+    padding: 2.4rem 2rem;
+    border: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+
+  .feature-card:hover { background: rgba(201,151,42,0.04); }
+
+  .feat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .feat-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+  }
+
+  .feature-card p { font-size: 0.9rem; color: rgba(247,245,240,0.75); line-height: 1.65; }
+
+  /* ── HOW IT WORKS ── */
+  .hiw-section { background: var(--navy-mid); }
+
+  .hiw-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 3rem 0 3.5rem;
+    border-bottom: 2px solid rgba(255,255,255,0.06);
+  }
+
+  .hiw-tab {
+    padding: 0.8rem 1.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .hiw-tab.active {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold);
+  }
+
+  .hiw-panels { display: block; }
+  .hiw-panel { display: none; }
+  .hiw-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+  .hiw-steps { display: flex; flex-direction: column; gap: 2rem; }
+
+  .hiw-step {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(201,151,42,0.1);
+    border: 1px solid rgba(201,151,42,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .step-body h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+    color: var(--white);
+  }
+
+  .step-body p { font-size: 0.88rem; color: rgba(247,245,240,0.75); line-height: 1.6; }
+
+  .hiw-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hiw-phone {
+    width: 240px;
+    height: 480px;
+    background: var(--navy-light);
+    border-radius: 34px;
+    border: 2px solid rgba(201,151,42,0.25);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hiw-screen-header {
+    background: var(--navy-mid);
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .hiw-screen-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .hiw-screen-sub { font-size: 9px; color: var(--gray); }
+
+  .hiw-screen-body { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+
+  .mini-entry {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .mini-entry-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .mini-tag {
+    font-size: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .tag-public { background: rgba(34,197,94,0.15); color: #4ade80; }
+  .tag-sub { background: rgba(201,151,42,0.15); color: var(--gold-light); }
+
+  .mini-entry-title { font-size: 10px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .mini-entry-body { font-size: 9px; color: rgba(247,245,240,0.72); line-height: 1.5; }
+
+  /* ── PRICING ── */
+  .pricing-section { background: var(--navy); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 4rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .price-card {
+    background: rgba(26,37,64,0.5);
+    border: 1px solid var(--border);
+    padding: 3rem 2.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-card.featured {
+    background: linear-gradient(150deg, rgba(201,151,42,0.1) 0%, rgba(26,37,64,0.5) 60%);
+    border-color: rgba(201,151,42,0.4);
+  }
+
+  .price-badge {
+    position: absolute;
+    top: -1px;
+    right: 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0 0 6px 6px;
+  }
+
+  .price-tier {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .price-amount span {
+    font-size: 1.5rem;
+    vertical-align: top;
+    margin-top: 0.8rem;
+    display: inline-block;
+    color: var(--gray);
+  }
+
+  .price-amount .mo { font-size: 1.2rem; color: var(--gray); vertical-align: baseline; }
+
+  .price-desc { font-size: 0.88rem; color: rgba(247,245,240,0.72); margin-bottom: 2rem; }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2.5rem; flex: 1; }
+
+  .price-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    color: rgba(247,245,240,0.75);
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .price-features li.locked { color: rgba(247,245,240,0.3); }
+  .price-features li.locked::before { content: '—'; color: var(--gray); }
+
+  /* ── SCREENSHOTS ── */
+  .screenshots-section { background: var(--navy-mid); overflow: hidden; }
+
+  .screenshots-track {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201,151,42,0.3) transparent;
+  }
+
+  .screenshots-track::-webkit-scrollbar { height: 4px; }
+  .screenshots-track::-webkit-scrollbar-track { background: transparent; }
+  .screenshots-track::-webkit-scrollbar-thumb { background: rgba(201,151,42,0.3); border-radius: 2px; }
+
+  .ss-item {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: 220px;
+    height: 440px;
+    background: var(--navy-light);
+    border-radius: 28px;
+    border: 2px solid rgba(201,151,42,0.2);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .ss-item:hover { transform: scale(1.03); border-color: rgba(201,151,42,0.45); }
+
+  .ss-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 26px; }
+
+  .ss-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(11,17,32,0.92));
+    color: var(--gold-light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1.5rem 0.5rem 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 0 0 26px 26px;
+  }
+
+  .ss-item:hover .ss-label { opacity: 1; }
+
+  .ss-tab-btn {
+    background: rgba(201,151,42,0.08);
+    border: 1px solid rgba(201,151,42,0.2);
+    color: var(--gray);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .ss-tab-btn:hover { color: var(--white); border-color: rgba(201,151,42,0.4); }
+  .ss-tab-btn.active { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+  .ss-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .ss-placeholder-icon { font-size: 2rem; opacity: 0.3; }
+  .ss-placeholder-label { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* ── FEATURE ROWS (redesigned screens section) ── */
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .feature-row.reverse .feature-visual { order: 2; }
+  .feature-row.reverse .feature-content { order: 1; }
+
+  .feature-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .feature-phone {
+    width: 280px;
+    height: 560px;
+    background: var(--navy-light);
+    border-radius: 36px;
+    border: 3px solid rgba(201,151,42,0.25);
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,151,42,0.1);
+    position: relative;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+  }
+
+  .feature-phone:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201,151,42,0.5);
+  }
+
+  .feature-phone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .feature-phone-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(160deg, rgba(201,151,42,0.08), rgba(11,17,32,0.6));
+  }
+
+  .feature-phone-placeholder .ph-icon {
+    font-size: 3rem;
+    opacity: 0.4;
+  }
+
+  .feature-phone-placeholder .ph-filename {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--gold);
+    background: rgba(11,17,32,0.6);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    border: 1px dashed rgba(201,151,42,0.4);
+    word-break: break-all;
+  }
+
+  .feature-phone-placeholder .ph-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+
+  .feature-phone-placeholder .ph-hint {
+    font-size: 0.75rem;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  .feature-content .feature-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,151,42,0.1);
+    padding: 0.4rem 0.9rem;
+    border-radius: 4px;
+    border: 1px solid rgba(201,151,42,0.25);
+    margin-bottom: 1.2rem;
+  }
+
+  .feature-content h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-content h3 span { color: var(--gold); }
+
+  .feature-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(247,245,240,0.72);
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-content ul li {
+    padding: 0.5rem 0 0.5rem 1.6rem;
+    position: relative;
+    font-size: 0.95rem;
+    color: rgba(247,245,240,0.85);
+  }
+
+  .feature-content ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .feature-row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 3rem 1.5rem;
+    }
+    .feature-row.reverse .feature-visual { order: 1; }
+    .feature-row.reverse .feature-content { order: 2; }
+    .feature-phone { width: 240px; height: 480px; }
+  }
+
+  /* ── COMPARISON ── */
+  .compare-section { background: var(--navy); }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .compare-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--gray);
+  }
+
+  .compare-table th.itg {
+    color: var(--gold);
+    background: rgba(201,151,42,0.05);
+    border-bottom-color: rgba(201,151,42,0.3);
+  }
+
+  .compare-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    color: rgba(247,245,240,0.82);
+  }
+
+  .compare-table td:first-child { color: var(--white); font-weight: 500; }
+
+  .compare-table td.itg {
+    background: rgba(201,151,42,0.03);
+    border-bottom-color: rgba(201,151,42,0.08);
+  }
+
+  .compare-table tr:hover td { background: rgba(255,255,255,0.01); }
+  .compare-table tr:hover td.itg { background: rgba(201,151,42,0.05); }
+
+  .check { color: #4ade80; font-size: 1.1rem; }
+  .cross { color: #f87171; font-size: 1.1rem; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section { background: var(--navy-mid); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .testimonial-card {
+    background: rgba(11,17,32,0.6);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 1.8rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .testimonial-card:hover { border-color: rgba(201,151,42,0.35); transform: translateY(-4px); }
+
+  .quote-mark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 0.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.93rem;
+    color: rgba(247,245,240,0.88);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author { display: flex; align-items: center; gap: 0.9rem; }
+
+  .author-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .author-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.04em; }
+  .author-title { font-size: 0.78rem; color: var(--gray); }
+
+  .stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--navy); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .faq-item {
+    background: rgba(26,37,64,0.4);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem 1.5rem;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    gap: 1rem;
+    transition: color 0.2s;
+    user-select: none;
+  }
+
+  .faq-q:hover { color: var(--gold-light); }
+
+  .faq-toggle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(201,151,42,0.1);
+    border: 1px solid rgba(201,151,42,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: var(--gold);
+    transition: transform 0.3s;
+  }
+
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s;
+    padding: 0 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(247,245,240,0.6);
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding: 0 1.5rem 1.4rem;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(201,151,42,0.08) 0%, rgba(11,17,32,1) 60%);
+    border-top: 1px solid var(--border);
+    padding: 120px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,151,42,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+
+  .cta-section h2 span { color: var(--gold); }
+
+  .cta-section p {
+    color: rgba(247,245,240,0.6);
+    font-size: 1.1rem;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    padding: 0.9rem 1.8rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .store-btn:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(201,151,42,0.4);
+    transform: translateY(-2px);
+  }
+
+  .store-btn svg { width: 24px; height: 24px; }
+
+  .store-text { text-align: left; line-height: 1.2; }
+  .store-text small { font-size: 0.7rem; color: var(--gray); display: block; text-transform: uppercase; letter-spacing: 0.05em; }
+  .store-text strong { font-size: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; }
+
+  /* ── CONTACT SECTION ── */
+  .contact-section {
+    background: var(--navy-mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    color: rgba(247,245,240,0.72);
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(247,245,240,0.06);
+    font-size: 0.92rem;
+    color: rgba(247,245,240,0.85);
+  }
+
+  .contact-detail:last-child { border-bottom: none; }
+
+  .contact-detail-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: rgba(201,151,42,0.1);
+    border: 1px solid rgba(201,151,42,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-detail-icon svg { width: 16px; height: 16px; }
+
+  .contact-detail strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gold-light);
+    margin-bottom: 0.15rem;
+  }
+
+  .contact-form-card {
+    background: rgba(26,37,64,0.5);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+  }
+
+  .contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .contact-field { margin-bottom: 1.1rem; display: flex; flex-direction: column; }
+
+  .contact-field label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-field label .required { color: var(--gold); }
+
+  .contact-field input,
+  .contact-field textarea {
+    background: rgba(11,17,32,0.6);
+    border: 1px solid rgba(247,245,240,0.1);
+    border-radius: 6px;
+    padding: 0.75rem 0.9rem;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 0.92rem;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+  }
+
+  .contact-field input:focus,
+  .contact-field textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(11,17,32,0.85);
+  }
+
+  .contact-field textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  .contact-field input::placeholder,
+  .contact-field textarea::placeholder {
+    color: rgba(247,245,240,0.3);
+  }
+
+  .contact-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 0.5rem;
+  }
+
+  .contact-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .contact-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .recaptcha-notice {
+    margin-top: 1.2rem;
+    font-size: 0.72rem;
+    color: rgba(247,245,240,0.4);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .recaptcha-notice a {
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(232,184,75,0.3);
+  }
+
+  .recaptcha-notice a:hover { color: var(--gold); }
+
+  .form-status {
+    margin-top: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    text-align: center;
+    display: none;
+  }
+
+  .form-status.success {
+    display: block;
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #4ade80;
+  }
+
+  .form-status.error {
+    display: block;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171;
+  }
+
+  @media (max-width: 880px) {
+    .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-form-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080e1c;
+    border-top: 1px solid var(--border);
+    padding: 4rem 5% 2rem;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand p { font-size: 0.88rem; color: rgba(247,245,240,0.65); margin: 1rem 0 1.5rem; line-height: 1.65; max-width: 280px; }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .footer-col ul li a {
+    text-decoration: none;
+    color: rgba(247,245,240,0.62);
+    font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul li a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: rgba(247,245,240,0.5);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-bottom a { color: rgba(247,245,240,0.5); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  .social-links { display: flex; gap: 0.75rem; }
+
+  .social-link {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .social-link:hover { background: rgba(201,151,42,0.1); border-color: rgba(201,151,42,0.3); }
+
+  /* ── ANIMATE ON SCROLL ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE NAV ── */
+
+  .mobile-menu a:active,
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero-visual { width: 38%; }
+    .phone-mockup { width: 240px; height: 480px; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-visual { display: none; }
+    .hero { padding: 100px 5% 60px; }
+    .hero h1 { font-size: 3.4rem; }
+    .hero-stats { gap: 1.5rem; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .hiw-panel.active { grid-template-columns: 1fr; }
+    .hiw-visual { display: none; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .compare-table { font-size: 0.8rem; }
+    .compare-table th, .compare-table td { padding: 0.75rem 1rem; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .section-pad { padding: 70px 5%; }
+    .hiw-tabs { overflow-x: auto; }
+  }
+
+  /* ── ITG LOGO SVG ── */
+  .itg-shield {
+    fill: none;
+  }
+
+  /* ── PHONE LOGO SM ── */
+  .phone-logo-sm {
+    width: 24px; height: 24px; background: var(--gold);
+    border-radius: 7px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: var(--navy); font-weight: 700;
+  }
+
+  /* ── SCROLL TO TOP ── */
+  #scrollTopBtn {
+    position: fixed; bottom: 2rem; right: 2rem;
+    width: 44px; height: 44px; background: var(--gold); color: var(--navy);
+    border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 999; opacity: 0; transform: translateY(12px) scale(0.9);
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    box-shadow: 0 4px 20px rgba(201,151,42,0.4);
+  }
+  #scrollTopBtn.visible { opacity: 1; transform: translateY(0) scale(1); }
+  #scrollTopBtn:hover { background: var(--gold-light); }
+
+  /* ── NAV SCROLLED ── */
+  nav.scrolled {
+    padding: 0.7rem 5%;
+    background: rgba(8, 14, 28, 0.98) !important;
+    box-shadow: 0 2px 40px rgba(0,0,0,0.4);
+  }
+
+  /* ── EARNINGS CALCULATOR ── */
+  .calculator-section { background: var(--navy); }
+  .calc-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 4rem;
+  }
+  .calc-card {
+    background: rgba(26,37,64,0.6); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2.5rem 2rem;
+  }
+  .calc-label {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--gray); margin-bottom: 0.6rem;
+  }
+  .calc-slider-wrap { margin-bottom: 1.5rem; }
+  .calc-value {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
+    color: var(--gold); margin-bottom: 0.5rem; display: block;
+  }
+  .calc-slider {
+    width: 100%; height: 4px; -webkit-appearance: none; appearance: none;
+    background: rgba(201,151,42,0.25); border-radius: 2px; outline: none; cursor: pointer;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 20px; height: 20px;
+    background: var(--gold); border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(201,151,42,0.2); cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+  .calc-slider::-webkit-slider-thumb:hover { box-shadow: 0 0 0 7px rgba(201,151,42,0.25); }
+  .calc-result {
+    background: linear-gradient(135deg,rgba(201,151,42,0.13) 0%,rgba(201,151,42,0.04) 100%);
+    border: 1.5px solid rgba(201,151,42,0.35); border-radius: 12px;
+    padding: 2rem; text-align: center; margin-top: 1.5rem;
+  }
+  .calc-result-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 0.5rem; }
+  .calc-result-amount { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--gold); line-height: 1; }
+  .calc-result-sub { font-size: 0.78rem; color: var(--gray); margin-top: 0.5rem; }
+  .calc-breakdown { margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); }
+  .calc-row { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); padding: 0.3rem 0; }
+  .calc-row span:last-child { color: var(--white); }
+  .calc-row.gold span:last-child { color: var(--gold); }
+  .calc-info-grid { display: flex; flex-direction: column; gap: 1.8rem; }
+  .calc-info-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .calc-info-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--gold); line-height: 1; min-width: 80px; }
+  .calc-info-text h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+  .calc-info-text p { font-size: 0.88rem; color: rgba(247,245,240,0.72); line-height: 1.55; }
+
+  /* ── PARTIAL TABLE CELL ── */
+  .partial { color: var(--gold-light); font-size: 0.82rem; font-style: italic; }
+
+  /* ── IMPROVED FEATURE CARD TOP LINE ── */
+  .feature-card { position: relative; overflow: hidden; }
+  .feature-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .feature-card:hover::after { opacity: 1; }
+
+  /* ── STAGGER CHILDREN ── */
+  .stagger-children > * { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .stagger-children.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.05s; }
+  .stagger-children.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.15s; }
+  .stagger-children.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.25s; }
+  .stagger-children.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.35s; }
+  .stagger-children.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.45s; }
+  .stagger-children.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.55s; }
+
+  /* ── HERO ORBS ── */
+  .hero-orb { position:absolute; border-radius:50%; pointer-events:none; filter:blur(80px); }
+  .hero-orb-1 { width:400px;height:400px;background:rgba(201,151,42,0.07);top:8%;right:3%;animation:orbFloat 14s ease-in-out infinite; }
+  .hero-orb-2 { width:270px;height:270px;background:rgba(99,102,241,0.05);bottom:22%;right:30%;animation:orbFloat 18s ease-in-out infinite reverse; }
+  @keyframes orbFloat { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(20px,-28px) scale(1.05)} 66%{transform:translate(-14px,14px) scale(0.97)} }
+
+  /* ── PHONE NOTCH ── */
+  .phone-notch { position:absolute;top:10px;left:50%;transform:translateX(-50%);width:100px;height:26px;background:#080e1c;border-radius:0 0 18px 18px;z-index:10;display:flex;align-items:center;justify-content:center; }
+  .notch-cam { width:9px;height:9px;background:#0d1828;border-radius:50%;border:1px solid rgba(255,255,255,0.08); }
+
+  /* ── HERO GLOW PULSE ── */
+  @keyframes glowPulse { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.12)} }
+  .hero-phone-glow { animation: glowPulse 4s ease-in-out infinite; }
+
+  /* ── SOCIAL LINK SVG ── */
+  .social-link { display:flex; align-items:center; justify-content:center; }
+  .social-link svg { width:15px; height:15px; fill:var(--gray); transition:fill 0.2s; }
+  .social-link:hover svg { fill:var(--gold-light); }
+
+  /* ── COMPARE TABLE SCROLL ── */
+  .compare-wrap { overflow-x:auto; margin-top:3.5rem; border-radius:12px; border:1px solid var(--border); scrollbar-width:thin; scrollbar-color:rgba(201,151,42,0.3) transparent; }
+
+  /* ── RESPONSIVE ADDITIONS ── */
+  @media (max-width:1024px) { .calc-wrapper { grid-template-columns:1fr; } .calc-info-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; } }
+  @media (max-width:768px) { .calc-info-grid { grid-template-columns:1fr; } #scrollTopBtn { bottom:1.2rem; right:1.2rem; } }
+
+
+  /* ── HERO CAROUSEL ── */
+  .hero-carousel {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 30px;
+  }
+  .hero-slide {
+    position: absolute; inset: 0;
+    opacity: 0; transform: scale(1.04);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    pointer-events: none;
+  }
+  .hero-slide.active {
+    opacity: 1; transform: scale(1);
+    pointer-events: auto;
+  }
+  .hero-dots {
+    position: absolute; bottom: -28px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 6px; align-items: center;
+  }
+  .hero-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(201,151,42,0.35);
+    cursor: pointer; transition: all 0.3s;
+  }
+  .hero-dot.active {
+    background: var(--gold); width: 18px; border-radius: 3px;
+  }
+
+  /* ── ACTIVE NAV LINK ── */
+
+
+  /* ── NAVBAR (canonical, identical across all pages) ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(11, 17, 32, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+  .nav-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  .nav-brand span { color: var(--gold); display: block; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links li { display: flex; align-items: center; margin: 0; }
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(247,245,240,0.72);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    border-bottom: none;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 6px;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 0 1px rgba(201,151,42,0.5), 0 0 18px rgba(201,151,42,0.35), 0 4px 14px rgba(201,151,42,0.25);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover {
+    background: var(--gold-light) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(232,184,75,0.6), 0 0 28px rgba(232,184,75,0.55), 0 6px 20px rgba(201,151,42,0.4);
+  }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+
+  /* Active state for current page / scroll-spy */
+  .nav-links a.nav-active {
+    color: var(--gold) !important;
+    position: relative;
+  }
+  .nav-links a.nav-active::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(8,14,28,0.98);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    padding: 0.4rem 1rem;
+    border-bottom: none;
+  }
+  .mobile-menu a:active,
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu a.nav-active { color: var(--gold) !important; }
+  .mobile-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 5%;
+    background: rgba(247,245,240,0.06);
+    border: 1px solid rgba(247,245,240,0.12);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .mobile-close:hover {
+    background: rgba(201,151,42,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  /* ── END NAVBAR ── */
+
+
+  /* ── MOBILE MENU TAP/ACTIVE STATE ── */
+  .mobile-menu a {
+    color: var(--white);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:active,
+  .mobile-menu a:focus,
+  .mobile-menu a:hover { color: var(--gold) !important; }
+  .mobile-menu a.nav-active { color: var(--gold) !important; }
+
+  /* ── GET THE APP BUTTON IN MOBILE MENU ── */
+  .mobile-menu a.mobile-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.85rem 2.4rem !important;
+    border-radius: 999px !important;
+    font-family: 'Inter', 'Barlow Condensed', sans-serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    margin-top: 1.5rem;
+    box-shadow: 0 0 0 1px rgba(201,151,42,0.55), 0 0 28px rgba(201,151,42,0.45), 0 6px 22px rgba(201,151,42,0.3);
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+  }
+  .mobile-menu a.mobile-cta:active,
+  .mobile-menu a.mobile-cta:focus,
+  .mobile-menu a.mobile-cta:hover {
+    background: var(--gold-light) !important;
+    color: var(--navy) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(232,184,75,0.7), 0 0 36px rgba(232,184,75,0.6), 0 8px 26px rgba(201,151,42,0.45);
+  }
+
+</style>
+  <!-- Open Graph / Link Preview -->
+  <meta property="og:title" content="Inside the Grind — Your Grind. Your Story. Your Income.">
+  <meta property="og:description" content="The only platform where athletes turn their daily grind into real income — and fans get the authentic access they've always wanted.">
+  <meta property="og:image" content="https://insidethegrindapp.com/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://insidethegrindapp.com">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Inside the Grind">
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Inside the Grind — Your Grind. Your Story. Your Income.">
+  <meta name="twitter:description" content="The only platform where athletes turn their daily grind into real income — and fans get the authentic access they've always wanted.">
+  <meta name="twitter:image" content="https://insidethegrindapp.com/images/og-image.jpg">
+
+</head>
+<body>
+
+<!-- SCROLL TO TOP -->
+<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+  <a href="#features" onclick="closeMobileMenu()">Features</a>
+  <a href="#how-it-works" onclick="closeMobileMenu()">How It Works</a>
+  <a href="#calculator" onclick="closeMobileMenu()">Earnings</a>
+  <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="about.html" onclick="closeMobileMenu()">About</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <a href="#download" onclick="closeMobileMenu()" class="mobile-cta">Get the App</a>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="images/image-01.jpg" alt="ITG Logo" style="width:40px;height:40px;object-fit:contain;border-radius:6px;">
+    <div class="nav-brand">Inside the<span>Grind</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#calculator">Earnings</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#download" class="nav-cta">Get the App</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🏆 For High School, College & Pro Athletes</div>
+    <h1>
+      Your Grind.<br>
+      Your Story.<br>
+      <em>Your Income.</em>
+    </h1>
+    <p class="hero-sub">
+      The first journaling platform where athletes document their real journey — and fans subscribe to live it with them. No highlight reels. Just raw, authentic, daily grind.
+    </p>
+    <div class="hero-actions">
+      <a href="#download" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Now
+      </a>
+      <a href="#features" class="btn-outline">
+        See How It Works
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">NIL</span>
+        <span class="stat-label">Friendly Income</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">80%</span>
+        <span class="stat-label">Revenue to Athletes</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">$4.99</span>
+        <span class="stat-label">Fan Subscription</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO PHONE MOCKUP -->
+  
+  <div class="hero-visual">
+    <div class="hero-phone-wrap">
+      <div class="hero-phone-glow"></div>
+      <div class="phone-mockup">
+        <div class="phone-notch"><div class="notch-cam"></div></div>
+        <div class="phone-screen" style="background:#000;">
+          <div class="hero-carousel">
+            <div class="hero-slide active"><img src="images/image-02.jpg" alt="Home Dashboard" style="width:100%;height:100%;object-fit:cover;border-radius:30px;"></div>
+            <div class="hero-slide "><img src="images/image-03.jpg" alt="New Journal Entry" style="width:100%;height:100%;object-fit:cover;border-radius:30px;"></div>
+            <div class="hero-slide "><img src="images/image-04.jpg" alt="Earnings" style="width:100%;height:100%;object-fit:cover;border-radius:30px;"></div>
+            <div class="hero-slide "><img src="images/image-05.jpg" alt="My Profile" style="width:100%;height:100%;object-fit:cover;border-radius:30px;"></div>
+          </div>
+        </div>
+        <div class="hero-dots"><div class="hero-dot active" onclick="goToSlide(0)"></div><div class="hero-dot " onclick="goToSlide(1)"></div><div class="hero-dot " onclick="goToSlide(2)"></div><div class="hero-dot " onclick="goToSlide(3)"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-label">Built For The Grind</span>
+  <div class="trust-divider"></div>
+  <div class="trust-marquee">
+  <div class="trust-scroll">
+    <span class="trust-item">NCAA Athletes</span>
+    <span class="trust-item">High School Stars</span>
+    <span class="trust-item">Track &amp; Field</span>
+    <span class="trust-item">Football</span>
+    <span class="trust-item">Basketball</span>
+    <span class="trust-item">Soccer</span>
+    <span class="trust-item">Baseball</span>
+    <span class="trust-item">Wrestling</span>
+    <span class="trust-item">Every Sport</span>
+    <!-- duplicate for seamless loop -->
+    <span class="trust-item">NCAA Athletes</span>
+    <span class="trust-item">High School Stars</span>
+    <span class="trust-item">Track &amp; Field</span>
+    <span class="trust-item">Football</span>
+    <span class="trust-item">Basketball</span>
+    <span class="trust-item">Soccer</span>
+    <span class="trust-item">Baseball</span>
+    <span class="trust-item">Wrestling</span>
+    <span class="trust-item">Every Sport</span>
+  </div>
+  </div>
+</div>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="problem-section section-pad" id="problem">
+  <div style="max-width:1300px; margin:auto;">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Athletes work harder than<br>anyone ever <span>sees.</span></h2>
+    <p class="section-sub">The 5am sessions. The mental battles. The recovery grind. None of it makes the highlight reel — but it's exactly what fans want to see.</p>
+
+    <div class="problem-grid reveal stagger-children">
+      <div class="problem-card">
+        <div class="p-icon red">😤</div>
+        <h3>The Athlete's Reality</h3>
+        <p>You're putting in elite-level work every single day — but the only content that gets shared is touchdowns and highlights. Your real story goes untold and unmonetized.</p>
+      </div>
+      <div class="problem-card solution">
+        <div class="p-icon gold">✅</div>
+        <h3>Inside the Grind Changes That</h3>
+        <p>Document your daily journey — training, mindset, recovery, diet — and give subscribers an exclusive front-row seat to your grind. Get paid directly for your story.</p>
+      </div>
+      <div class="problem-card">
+        <div class="p-icon red">😔</div>
+        <h3>The Fan's Frustration</h3>
+        <p>Fans follow athletes on Instagram and TikTok but never get to know the real person behind the jersey. It's all performance, no personality. No depth.</p>
+      </div>
+      <div class="problem-card solution">
+        <div class="p-icon gold">✅</div>
+        <h3>Real Access, Real Connection</h3>
+        <p>For $4.99/month, fans get direct access to journal entries, live streams, and exclusive content from the athletes they support. Authentic. Personal. Unfiltered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section section-pad" id="features">
+  <div style="max-width:1300px; margin:auto;">
+    <div class="text-center reveal">
+      <div class="section-label">Platform Features</div>
+      <h2 class="section-title">Everything Athletes <span>Need to Win</span></h2>
+      <p class="section-sub">Built specifically for college and high school athletes. Every feature is designed to help you tell your story, grow your audience, and earn.</p>
+    </div>
+
+    <div class="features-grid reveal stagger-children">
+      <div class="feature-card">
+        <span class="feat-num">01</span>
+        <span class="feat-icon">📓</span>
+        <h3>Custom Journal Profiles</h3>
+        <p>Your own athlete profile with daily journal entries — text, photos, and video. Write about game-day prep, mental health, diet, recovery, or anything that's real to your journey.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">02</span>
+        <span class="feat-icon">💰</span>
+        <h3>Direct NIL Monetization</h3>
+        <p>Earn 80% of every subscription your fans pay. No sponsors needed, no endorsement deals — just your authentic story translating directly into monthly income.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">03</span>
+        <span class="feat-icon">📺</span>
+        <h3>Live Streaming</h3>
+        <p>Go live for subscribers — post-game breakdowns, Q&As, locker room energy. Paid subscribers get full live stream access, creating real-time connection with your fan base.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">04</span>
+        <span class="feat-icon">🔓</span>
+        <h3>Free vs. Paid Content Control</h3>
+        <p>You decide which posts are public (free) to grow your audience and which are subscriber-only to reward your loyal fans. Full control over your content strategy.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">05</span>
+        <span class="feat-icon">💬</span>
+        <h3>Private Fan Messaging</h3>
+        <p>Subscribers can submit questions that you choose to answer in your entries or live. Build genuine relationships with your most dedicated supporters.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feat-num">06</span>
+        <span class="feat-icon">📊</span>
+        <h3>Growth & Earnings Dashboard</h3>
+        <p>Track your subscriber count, monthly earnings, post engagement, and audience growth — all in a clean dashboard designed for athletes, not marketers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hiw-section section-pad" id="how-it-works">
+  <div style="max-width:1300px; margin:auto;">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Simple for <span>Athletes.</span><br>Addictive for <span>Fans.</span></h2>
+    </div>
+
+    <div class="hiw-tabs reveal">
+      <button class="hiw-tab active" onclick="switchTab('athletes', this)">🏃 For Athletes</button>
+      <button class="hiw-tab" onclick="switchTab('fans', this)">❤️ For Fans</button>
+    </div>
+
+    <div class="hiw-panels">
+      <div class="hiw-panel active" id="tab-athletes">
+        <div class="hiw-steps">
+          <div class="hiw-step reveal">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Create Your Profile</h4>
+              <p>Set up your athlete profile in minutes. Add your sport, school, position, and bio. This is your brand — make it yours.</p>
+            </div>
+          </div>
+          <div class="hiw-step reveal">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Start Journaling Your Journey</h4>
+              <p>Post daily entries — text, video, photos. Share your training mindset, pre-game rituals, recovery process, or honest reflections. Authenticity is the product.</p>
+            </div>
+          </div>
+          <div class="hiw-step reveal">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Choose Free vs. Subscriber Content</h4>
+              <p>Use free posts to grow your following. Lock premium content for paying subscribers — your best stuff deserves to be rewarded.</p>
+            </div>
+          </div>
+          <div class="hiw-step reveal">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Watch Your Income Grow</h4>
+              <p>Every new subscriber adds $4.00 to your monthly earnings. 100 subscribers = $400/month. 500 = $2,000. The grind pays, literally.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hiw-visual">
+          <div style="position:relative;display:inline-block;">
+            <img src="images/image-06.jpg" alt="Athlete App Screen"
+              style="width:255px;border-radius:32px;box-shadow:0 30px 80px rgba(0,0,0,0.55),0 0 0 2px rgba(201,151,42,0.3);display:block;animation:phoneFloat 7s ease-in-out infinite;">
+          </div>
+        </div>
+      </div>
+
+      <div class="hiw-panel" id="tab-fans">
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Find Your Athlete</h4>
+              <p>Browse profiles of college and top high school athletes across all sports. Follow them for free to see their public content.</p>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Subscribe for $4.99/month</h4>
+              <p>Unlock full journal access, live streams, exclusive content, and the ability to interact directly. Cancel anytime — no commitment.</p>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Experience the Real Journey</h4>
+              <p>Read raw, unfiltered journal entries daily. Watch live streams. React and comment. This is the access you've never had before.</p>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Be Part of Their Story</h4>
+              <p>Submit questions, send messages, and watch the athletes you support grow — knowing your subscription directly funds their journey.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hiw-visual">
+          <div style="position:relative;display:inline-block;">
+            <img src="images/image-07.jpg" alt="Fan App Screen"
+              style="width:255px;border-radius:32px;box-shadow:0 30px 80px rgba(0,0,0,0.55),0 0 0 2px rgba(201,151,42,0.3);display:block;animation:phoneFloat 7s ease-in-out infinite 0.5s;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EARNINGS CALCULATOR -->
+<section style="background:var(--navy);position:relative;z-index:1;" class="section-pad" id="calculator">
+  <div style="max-width:1300px;margin:auto;">
+    <div class="text-center reveal">
+      <div class="section-label">Earnings Calculator</div>
+      <h2 class="section-title">See What Your <span>Grind Is Worth</span></h2>
+      <p class="section-sub">Move the slider to estimate your monthly earnings based on subscriber count.</p>
+    </div>
+    <div class="calc-wrapper reveal">
+      <div class="calc-card">
+        <div class="calc-slider-wrap">
+          <div class="calc-label">Number of Subscribers</div>
+          <span class="calc-value" id="calcSubs">100 subscribers</span>
+          <input type="range" class="calc-slider" id="subsSlider" min="10" max="2000" value="100" step="10">
+        </div>
+        <div class="calc-result">
+          <div class="calc-result-label">Your Monthly Earnings (80%)</div>
+          <div class="calc-result-amount" id="calcEarnings">$400</div>
+          <div class="calc-result-sub" id="calcYearly">That's $4,800 per year from your story</div>
+        </div>
+        <div class="calc-breakdown">
+          <div class="calc-row"><span>Fan subscription price</span><span>$4.99 / mo</span></div>
+          <div class="calc-row gold"><span>Your revenue share</span><span>80%</span></div>
+          <div class="calc-row"><span>Platform fee</span><span>20%</span></div>
+        </div>
+      </div>
+      <div class="calc-info-grid">
+        <div class="calc-info-item"><div class="calc-info-num">100</div><div class="calc-info-text"><h4>Subscribers</h4><p>$400/mo — a car payment or book money, deposited consistently every month.</p></div></div>
+        <div class="calc-info-item"><div class="calc-info-num">250</div><div class="calc-info-text"><h4>Subscribers</h4><p>$1,000/mo — covers tuition, equipment, or real savings for life after sports.</p></div></div>
+        <div class="calc-info-item"><div class="calc-info-num">500</div><div class="calc-info-text"><h4>Subscribers</h4><p>$2,000/mo — real NIL income from your authentic story. No sponsor needed.</p></div></div>
+        <div class="calc-info-item"><div class="calc-info-num">1K+</div><div class="calc-info-text"><h4>Subscribers</h4><p>$4,000+/mo — life-changing income that funds your future on your terms.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section section-pad" id="pricing">
+  <div style="max-width:1300px; margin:auto;">
+    <div class="text-center reveal">
+      <div class="section-label">Simple Pricing</div>
+      <h2 class="section-title">Your Story, <span>Priced Right</span></h2>
+      <p class="section-sub">Fans support athletes directly. Athletes keep the majority of every dollar earned. No hidden fees, no sponsorship required.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="price-tier">Fan · Free Tier</div>
+        <div class="price-amount"><span>$</span>0<span class="mo">/mo</span></div>
+        <p class="price-desc">Follow athletes and see their public content. Perfect for discovering who to support.</p>
+        <ul class="price-features">
+          <li>Follow unlimited athletes</li>
+          <li>Comment &amp; react to posts (only public journals)</li>
+          <li>Access athlete bios &amp; goals</li>
+          <li class="locked">Full journal entry access</li>
+          <li class="locked">Live stream access</li>
+          <li class="locked">Subscriber-only exclusive content</li>
+          <li class="locked">Direct fan messaging/submit a question</li>
+        </ul>
+        <a href="#download" class="btn-outline" style="width:100%; text-align:center; display:block; padding: 0.85rem;">Follow for Free</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Fan · Subscriber</div>
+        <div class="price-amount"><span>$</span>4<span class="mo">.99/mo</span></div>
+        <p class="price-desc">Full access to one athlete's complete journey. Unlimited posts, live streams, exclusive content.</p>
+        <ul class="price-features">
+          <li>Everything in Free, plus:</li>
+          <li>Unlimited journal entry access</li>
+          <li>Live stream access</li>
+          <li>Comment and react to all posts</li>
+          <li>Subscriber-only exclusive content</li>
+          <li>Direct fan messaging/submit a question (athlete's choice)</li>
+          <li>80% goes directly to the athlete</li>
+        </ul>
+        <a href="#download" class="btn-primary" style="width:100%; text-align:center; display:block; padding: 0.85rem;">Subscribe Now</a>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color: rgba(247,245,240,0.4);">
+      Athletes keep 80% of all subscription revenue · Cancel anytime · Multiple athlete subscriptions available
+    </p>
+  </div>
+</section>
+
+<!-- SCREENSHOTS / FEATURES -->
+<section class="screenshots-section section-pad" id="screenshots">
+  <div style="max-width:1300px; margin:auto;">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">The Features That Matter</div>
+      <h2 class="section-title">Two Apps. <span>One Mission.</span></h2>
+      <p class="section-sub" style="margin-left:auto; margin-right:auto;">Athletes build their legacy. Fans get unprecedented access. Here's how it works.</p>
+    </div>
+
+    <!-- TAB SWITCHER -->
+    <div class="ss-tabs reveal" style="display:flex; gap:0.5rem; margin:2.5rem 0 1.5rem; justify-content:center; flex-wrap:wrap;">
+      <button class="ss-tab-btn active" onclick="switchScreenTab('athlete', this)">🏃 For Athletes</button>
+      <button class="ss-tab-btn" onclick="switchScreenTab('fan', this)">❤️ For Fans</button>
+    </div>
+  </div>
+
+  <!-- ATHLETE FEATURES -->
+  <div id="ss-athlete" class="ss-panel">
+
+    <!-- Feature 1: Journal -->
+    <div class="feature-row reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-journal.png" alt="Journal Your Journey" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Core Feature</span>
+        <h3>Journal Your <span>Journey</span></h3>
+        <p>Document every win, every setback, every breakthrough. Build a private archive of your athletic story — or share moments that turn followers into believers.</p>
+        <ul>
+          <li>Rich text entries with mood & tags</li>
+          <li>Save as draft or publish to fans</li>
+          <li>Photo & video attachments</li>
+          <li>Searchable timeline of your career</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 2: Go Live -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-live.png" alt="Go Live" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Real-Time</span>
+        <h3>Go Live. <span>Connect Instantly.</span></h3>
+        <p>Train. Compete. Celebrate. Take your fans courtside, ringside, or trackside in real time. Subscribers get exclusive access — your most loyal supporters, your most intimate moments.</p>
+        <ul>
+          <li>One-tap broadcast from anywhere</li>
+          <li>Subscriber-only streams</li>
+          <li>Live Q&amp;A with engaged fans</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 3: Earnings -->
+    <div class="feature-row reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-earnings.png" alt="Earnings Dashboard" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Monetization</span>
+        <h3>Earn From Your <span>Story.</span></h3>
+        <p>Your grind has value. Turn subscribers into income with transparent earnings, instant payout tracking, and full control over your subscription tiers.</p>
+        <ul>
+          <li>Real-time earnings dashboard</li>
+          <li>Direct payouts — no middleman</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 4: Build Fan Base -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-dashboard.png" alt="Home Dashboard" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Growth</span>
+        <h3>Build Your <span>Fan Base.</span></h3>
+        <p>Everything you need in one place. See who's watching, what's resonating, and where to focus next. Built for athletes who treat their career like a business.</p>
+        <ul>
+          <li>Subscribers count</li>
+          <li>Notification &amp; engagement tools</li>
+          <li>Profile customization</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FAN FEATURES -->
+  <div id="ss-fan" class="ss-panel" style="display:none;">
+
+    <!-- Feature 1: Explore Athletes -->
+    <div class="feature-row reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-explore.png" alt="Explore Athletes" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Discovery</span>
+        <h3>Find Your <span>Athletes.</span></h3>
+        <p>Discover rising stars and follow legends. Browse by sport, name, school, username — every profile is a window into someone's grind.</p>
+        <ul>
+          <li>Search by sport, name, school, username</li>
+          <li>Free preview of every profile</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 2: Watch Live -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-watchlive.png" alt="Watch Live" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Real-Time Access</span>
+        <h3>Watch Them <span>Live.</span></h3>
+        <p>Be there for the training session, the championship, the comeback. Subscribers get front-row access to live broadcasts and Q&A.</p>
+        <ul>
+          <li>HD live streams from your athletes</li>
+          <li>Send questions during streams</li>
+          <li>Notifications when they go live</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 3: Subscribe -->
+    <div class="feature-row reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-subscribe.png" alt="Subscribe" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Premium Access</span>
+        <h3>Support The <span>Grind.</span></h3>
+        <p>Subscribe to back the athletes you believe in. Unlock exclusive journals, private streams, and direct interaction — your support builds their journey.</p>
+        <ul>
+          <li>Exclusive subscriber-only content</li>
+          <li>Private live streams &amp; Q&amp;As</li>
+          <li>Direct messages/submit questions to athletes</li>
+          <li>Cancel anytime, no commitment</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 4: Journals Feed -->
+    <div class="feature-row reverse reveal">
+      <div class="feature-visual">
+        <div class="feature-phone">
+          <img src="images/feature-feed.png" alt="Journals Feed" style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+      </div>
+      <div class="feature-content">
+        <span class="feature-tag">Daily Stories</span>
+        <h3>Read Their <span>Story.</span></h3>
+        <p>Get inside the mind of every athlete you follow. Daily journal entries, behind-the-scenes thoughts, and the stories you won't see anywhere else.</p>
+        <ul>
+          <li>Personalized journal feed</li>
+          <li>Mood &amp; training context</li>
+          <li>Comment &amp; ask questions</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- COMPARISON -->
+<section class="compare-section section-pad" id="compare">
+  <div style="max-width:1100px; margin:auto;">
+    <div class="text-center reveal">
+      <div class="section-label">Why Inside the Grind</div>
+      <h2 class="section-title">Nothing Else Does <span>This.</span></h2>
+      <p class="section-sub">Every other platform shows what athletes do. We show who they are.</p>
+    </div>
+
+    <div class="compare-wrap reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="itg">🏆 Inside the Grind</th>
+            <th>Instagram / TikTok</th>
+            <th>YouTube</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Daily Personal Journals</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Subscription Monetization for Athletes</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td>Limited</td>
+          </tr>
+          <tr>
+            <td>Mental & Emotional Journey Focus</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Built for College & HS Athletes</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Fan Interaction via Storytelling</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Athlete Owns & Controls Content</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>NIL-Compliant Direct Income</td>
+            <td class="itg"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section section-pad" id="testimonials">
+  <div style="max-width:1300px; margin:auto;">
+    <div class="text-center reveal">
+      <div class="section-label">Real Stories</div>
+      <h2 class="section-title">Athletes & Fans <span>Love It</span></h2>
+    </div>
+
+    <div class="testimonials-grid stagger-children reveal">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">I've been posting on Instagram for two years and never made a dime. Three months on Inside the Grind and I'm at 140 subscribers, pulling in over $500 a month just from being real. This platform actually rewards consistency.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: rgba(201,151,42,0.15); color: var(--gold);">FB</div>
+          <div>
+            <div class="author-name">Football Athlete</div>
+            <div class="author-title">College</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">I've followed Marcus on Twitter forever but never felt like I knew him. On ITG, I read about his anxiety before games, his relationship with his dad, his recovery from injury. That's the athlete I wanted to support all along.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: rgba(99,102,241,0.15); color: #818cf8;">FN</div>
+          <div>
+            <div class="author-name">Subscriber</div>
+            <div class="author-title">Fan since Day 1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">As a high school athlete trying to build my brand early, ITG is the smartest move I've made. I get to tell my story authentically while learning what connects with fans. The journaling itself has made me a better player mentally.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background: rgba(34,197,94,0.15); color: #4ade80;">BB</div>
+          <div>
+            <div class="author-name">Basketball Athlete</div>
+            <div class="author-title">High School</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section section-pad" id="faq">
+  <div style="max-width:1100px; margin:auto;">
+    <div class="text-center reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Questions <span>Answered.</span></h2>
+    </div>
+
+    <div class="faq-grid reveal">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          Is Inside the Grind NCAA / NIL compliant?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Yes. Inside the Grind is designed around the NCAA's NIL rules. Athletes monetize their own personal brand content, not athletic performance — which falls squarely within NIL guidelines. We recommend athletes consult their compliance officer, but the model is built to be compliant.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          How much do athletes actually earn?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Athletes keep 80% of every subscription. At $4.99/month per fan, that's roughly $4.00 per subscriber per month. 100 subscribers = ~$400/month. 500 subscribers = ~$2,000/month. Growth depends on consistency, authenticity, and engagement.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          What kind of content should athletes post?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Anything authentic — game-day prep, practice reflections, mental health moments, diet and recovery routines, goals and setbacks. The more real and consistent you are, the more subscribers stay and grow. Highlight reels are for social media. This is for your real story.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          Can fans cancel their subscription anytime?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Yes, absolutely. Fans can cancel at any time with no penalty. Subscriptions run month-to-month. If a fan cancels mid-month, they retain access until the end of the current billing period.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          Is this only for football players?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Not at all. Inside the Grind is for all college and top high school athletes — football, basketball, soccer, track, swimming, wrestling, volleyball, and more. Any athlete with a real story to tell is welcome.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          How do fans find athletes to subscribe to?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Fans can browse athlete profiles by sport, school, or popularity. Athletes with active public posts are more discoverable, which is why we encourage a mix of free and subscriber-only content to maximize reach and conversions.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          Do athletes have to post every day?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">There's no requirement, but the platform is built around consistency being rewarded. Athletes who post regularly tend to retain subscribers better and attract new ones faster. We recommend 3-5 posts per week during season, 2-3 in offseason.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          When is the app available?
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Inside the Grind is coming soon to iOS &amp; Android.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="download">
+  <div style="position:relative; z-index:1;">
+    <div class="section-label" style="justify-content:center; display:flex; margin-bottom:1rem;">Ready to Start?</div>
+    <h2>Stop Grinding in <span>Silence.</span><br>Start Getting <span>Paid.</span></h2>
+    <p>Your daily grind deserves to be seen — and rewarded. Download Inside the Grind and start building the audience your work deserves.</p>
+
+    <div class="cta-buttons">
+      <a href="#" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="store-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </a>
+
+      <a href="#" class="store-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.181l2.741 1.587a1 1 0 0 1 0 1.774l-2.741 1.587-2.504-2.504 2.504-2.444zM5.864 2.658L16.802 8.99l-2.302 2.302L5.864 2.658z"/></svg>
+        <div class="store-text">
+          <small>Get it on</small>
+          <strong>Google Play</strong>
+        </div>
+      </a>
+    </div>
+
+    <p style="margin-top:2.5rem; font-size:0.8rem; color:rgba(247,245,240,0.3);">Coming soon on App Store &amp; Google Play · Free to download</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section section-pad" id="contact">
+  <div style="max-width:1200px; margin:auto;">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label" style="justify-content:center;">Contact Us</div>
+      <h2 class="section-title">Get in <span>Touch</span></h2>
+      <p class="section-sub" style="margin-left:auto; margin-right:auto;">Partnership opportunities, brand collaborations, athlete questions, or general inquiries — we'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-wrapper reveal">
+
+      <!-- LEFT: Info -->
+      <div class="contact-info">
+        <h3>Questions or Comments?</h3>
+        <p>Whether you're an athlete looking to grow, a brand wanting to partner, or a fan with questions — drop us a message and we'll get back to you within 48 hours.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:info@insidethegrindapp.com" style="color:rgba(247,245,240,0.85); text-decoration:none;">info@insidethegrindapp.com</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <strong>Response Time</strong>
+            <span>Within 48 hours, Mon–Fri</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="contact-form-card">
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+          <!-- Web3Forms Access Key (REPLACE THIS WITH YOUR REAL KEY FROM web3forms.com) -->
+          <input type="hidden" name="access_key" value="1d8a7211-d5a9-4210-929b-daf24015b97c">
+          <input type="hidden" name="subject" value="New Contact Form Submission – Inside the Grind">
+          <input type="hidden" name="from_name" value="Inside the Grind Website">
+          <!-- Honeypot anti-spam (must remain empty) -->
+          <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+          <div class="contact-form-row">
+            <div class="contact-field" style="margin-bottom:0;">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="contact-field" style="margin-bottom:0;">
+              <label for="cf-email">Email <span class="required">*</span></label>
+              <input type="email" id="cf-email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject_line" placeholder="What's this about?">
+          </div>
+
+          <div class="contact-field">
+            <label for="cf-message">Message <span class="required">*</span></label>
+            <textarea id="cf-message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+          </div>
+
+          <button type="submit" class="contact-submit" id="cfSubmit">Send Message</button>
+
+          <div class="form-status" id="formStatus"></div>
+
+          <p class="recaptcha-notice">
+            This site is protected by reCAPTCHA and the Google
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and
+            <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top" style="max-width:1300px; margin:auto;">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:0.8rem; display:inline-flex;">
+        <img src="images/image-48.jpg" alt="ITG Logo" style="width:36px;height:36px;object-fit:contain;border-radius:5px;">
+        <div class="nav-brand" style="font-size:1rem;">Inside the<span>Grind</span></div>
+      </a>
+      <p>The only platform where athletes turn their daily grind into real income — and fans get the authentic access they've always wanted.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://instagram.com/insidethegrindapp" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+        <a href="#" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#calculator">Earnings</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About ITG</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="account-deletion.html">Account Deletion</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom" style="max-width:1300px; margin:auto;">
+    <span>© 2026 Inside the Grind. All rights reserved.</span>
+    <span>Made for athletes who refuse to quit.</span>
+  </div>
+</footer>
+
+<script>
+  // ── NAV SCROLL + SCROLL-TO-TOP ──
+  const mainNav = document.getElementById('mainNav');
+  const scrollBtn = document.getElementById('scrollTopBtn');
+
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 60) {
+      mainNav.classList.add('scrolled');
+    } else {
+      mainNav.classList.remove('scrolled');
+      mainNav.style.background = '';
+    }
+    if (scrollBtn) {
+      if (y > 400) scrollBtn.classList.add('visible');
+      else scrollBtn.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  // ── EARNINGS CALCULATOR ──
+  const slider = document.getElementById('subsSlider');
+  const calcSubsEl = document.getElementById('calcSubs');
+  const calcEarningsEl = document.getElementById('calcEarnings');
+  const calcYearlyEl = document.getElementById('calcYearly');
+
+  function updateCalc() {
+    if (!slider) return;
+    const subs = parseInt(slider.value);
+    const monthly = Math.floor(subs * 4.99 * 0.8);
+    const yearly = monthly * 12;
+    if(calcSubsEl) calcSubsEl.textContent = subs.toLocaleString() + ' subscriber' + (subs !== 1 ? 's' : '');
+    if(calcEarningsEl) calcEarningsEl.textContent = '$' + monthly.toLocaleString();
+    if(calcYearlyEl) calcYearlyEl.textContent = "That's $" + yearly.toLocaleString() + " per year from your story";
+    // Update slider fill
+    const pct = ((subs - 10) / (2000 - 10)) * 100;
+    slider.style.background = `linear-gradient(to right, var(--gold) 0%, var(--gold) ${pct}%, rgba(201,151,42,0.25) ${pct}%, rgba(201,151,42,0.25) 100%)`;
+  }
+
+  if (slider) {
+    slider.addEventListener('input', updateCalc);
+    updateCalc();
+  }
+
+  // ── HERO EARNINGS COUNTER ──
+  function animateCounter(el, target, prefix, duration) {
+    const start = performance.now();
+    function update(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.floor(target * eased).toLocaleString();
+      if (p < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+  const heroEarningsEl = document.querySelector('.earnings-amount');
+  if (heroEarningsEl) {
+    setTimeout(() => animateCounter(heroEarningsEl, 892, '$', 1800), 1200);
+  }
+
+  // ── MOBILE MENU ──
+  function openMobileMenu() {
+    // Restore the last-tapped item highlight when menu opens
+    applyMobileActive();
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Remember last tapped section link (only for hash links, not Get the App)
+  function applyMobileActive() {
+    const last = sessionStorage.getItem('itg_mobile_last');
+    document.querySelectorAll('.mobile-menu a').forEach(a => a.classList.remove('nav-active'));
+    if (last) {
+      const target = document.querySelector(`.mobile-menu a[href="${last}"]`);
+      if (target && !target.classList.contains('mobile-cta')) {
+        target.classList.add('nav-active');
+      }
+    }
+  }
+
+  // Hook into mobile menu link clicks (excluding the Get the App CTA)
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    if (a.classList.contains('mobile-cta')) return; // skip Get the App
+    a.addEventListener('click', () => {
+      const href = a.getAttribute('href');
+      if (href) sessionStorage.setItem('itg_mobile_last', href);
+    });
+  });
+
+  // Close menu when clicking on the dark overlay (outside link area)
+  document.getElementById('mobileMenu')?.addEventListener('click', function(e) {
+    // Only close if user clicked the overlay itself, not a link or close button
+    if (e.target === this) closeMobileMenu();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) closeMobileMenu();
+  });
+
+  // ── HOW IT WORKS TABS ──
+  function switchTab(id, btn) {
+    document.querySelectorAll('.hiw-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.hiw-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  document.querySelector('.hiw-panels').style.display = 'block';
+
+  // ── SCREENSHOT TABS ──
+  function switchScreenTab(id, btn) {
+    document.querySelectorAll('.ss-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.ss-panel').forEach(p => p.style.display = 'none');
+    btn.classList.add('active');
+    document.getElementById('ss-' + id).style.display = 'block';
+  }
+
+  // ── FAQ ACCORDION ──
+  function toggleFaq(item) {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── CONTACT FORM (Web3Forms) ──
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('cfSubmit');
+      const statusEl = document.getElementById('formStatus');
+      const originalBtnText = submitBtn.textContent;
+
+      // Reset status
+      statusEl.className = 'form-status';
+      statusEl.textContent = '';
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          statusEl.className = 'form-status success';
+          statusEl.textContent = '✓ Message sent! We\'ll get back to you within 48 hours.';
+          contactForm.reset();
+        } else {
+          statusEl.className = 'form-status error';
+          statusEl.textContent = data.message || 'Something went wrong. Please try emailing us directly.';
+        }
+      } catch (err) {
+        statusEl.className = 'form-status error';
+        statusEl.textContent = 'Network error. Please try again or email us directly.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+    });
+  }
+
+  // ── SCROLL REVEAL ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── SMOOTH ANCHOR SCROLL ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href === '#') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const navH = document.getElementById('mainNav').offsetHeight;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 10;
+        window.scrollTo({ top, behavior: 'smooth' });
+        closeMobileMenu();
+      }
+    });
+  });
+
+  // ── HERO CAROUSEL ──
+  let heroSlides = document.querySelectorAll('.hero-slide');
+  let heroDots = document.querySelectorAll('.hero-dot');
+  let heroIdx = 0;
+  let heroTimer;
+
+  function goToSlide(n) {
+    heroSlides[heroIdx].classList.remove('active');
+    heroDots[heroIdx].classList.remove('active');
+    heroIdx = n;
+    heroSlides[heroIdx].classList.add('active');
+    heroDots[heroIdx].classList.add('active');
+  }
+
+  function nextHeroSlide() {
+    goToSlide((heroIdx + 1) % heroSlides.length);
+  }
+
+  function startHeroCarousel() {
+    heroTimer = setInterval(nextHeroSlide, 3000);
+  }
+
+  if (heroSlides.length > 0) {
+    startHeroCarousel();
+    document.querySelector('.phone-mockup').addEventListener('mouseenter', () => clearInterval(heroTimer));
+    document.querySelector('.phone-mockup').addEventListener('mouseleave', startHeroCarousel);
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About · Inside the Grind</title>
+<meta name="description" content="The story behind Inside the Grind — built by people who believe athletes deserve to own their narrative and earn from their journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1120;
+    --navy-mid: #111827;
+    --navy-light: #1a2540;
+    --gold: #C9972A;
+    --gold-light: #E8B84B;
+    --gold-pale: #F5D98A;
+    --white: #F7F5F0;
+    --gray: #A8B4C2;
+    --gray-mid: #6B7A8D;
+    --border: rgba(201, 151, 42, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+
+  /* ── HERO ── */
+  .about-hero { padding: 9rem 5% 5rem; background: var(--navy-mid); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .about-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(201,151,42,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 100%, rgba(201,151,42,0.05) 0%, transparent 60%); pointer-events: none; }
+  .about-hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; text-align: center; }
+
+  .section-label { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .section-label::after { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--white); box-shadow: 0 0 8px rgba(247,245,240,0.4); }
+
+  .about-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1; letter-spacing: 0.02em; margin-bottom: 1.5rem; color: var(--white); }
+  .about-hero h1 span { color: var(--gold); }
+  .about-hero .lead { font-size: 1.15rem; color: rgba(247,245,240,0.78); max-width: 720px; margin: 0 auto; line-height: 1.7; }
+
+  /* ── SECTION ── */
+  .section { padding: 6rem 5%; position: relative; }
+  .section-mid { background: var(--navy-mid); }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4.5vw, 3.5rem); line-height: 1.05; letter-spacing: 0.02em; margin-bottom: 1.2rem; color: var(--white); }
+  .section-title span { color: var(--gold); }
+  .section-sub { color: rgba(247,245,240,0.75); max-width: 640px; font-size: 1rem; line-height: 1.7; margin-bottom: 3rem; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin-left: auto; margin-right: auto; }
+  .text-center .section-label { justify-content: center; }
+
+  /* ── STORY ── */
+  .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .story-text p { color: rgba(247,245,240,0.78); margin-bottom: 1.2rem; font-size: 1rem; line-height: 1.8; }
+  .story-text p strong { color: var(--gold-light); font-weight: 600; }
+  .story-image {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(201,151,42,0.3);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,151,42,0.1);
+    position: relative;
+  }
+  .story-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .story-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(11,17,32,0.3));
+    pointer-events: none;
+  }
+
+  /* ── MISSION VALUES ── */
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--border); }
+  .value-card { background: rgba(11,17,32,0.85); padding: 2.4rem 2rem; transition: background 0.3s, transform 0.3s; position: relative; }
+  .value-card:hover { background: linear-gradient(145deg, rgba(201,151,42,0.05), rgba(247,245,240,0.02)); transform: translateY(-2px); }
+  .value-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--white), var(--gold), transparent); opacity: 0; transition: opacity 0.3s; }
+  .value-card:hover::after { opacity: 1; }
+  .value-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.2rem; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; display: block; letter-spacing: 0.02em; }
+  .value-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin-bottom: 0.7rem; }
+  .value-card p { font-size: 0.92rem; color: rgba(247,245,240,0.72); line-height: 1.65; }
+
+  /* ── TEAM ── */
+  .team-section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    font-size: 2.4rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-top: 3.5rem;
+    margin-bottom: 0.4rem;
+    text-align: center;
+    line-height: 1;
+  }
+  .team-section-label::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0.9rem auto 0;
+    border-radius: 2px;
+  }
+  .team-section-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 0.6rem;
+    margin-top: 3.5rem;
+  }
+  .team-grid { display: grid; gap: 2rem; margin-top: 1.5rem; }
+  .team-grid.leadership-grid {
+    grid-template-columns: repeat(2, minmax(0, 320px));
+    justify-content: center;
+  }
+  .team-grid.advisors-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .team-grid.advisors-grid .team-card { padding: 1.6rem 1.2rem; }
+  .team-grid.advisors-grid .team-photo { width: 90px; height: 90px; margin-bottom: 0.9rem; }
+  .team-grid.advisors-grid .team-name { font-size: 1.05rem; }
+  .team-grid.advisors-grid .team-role { font-size: 0.7rem; margin-bottom: 0; }
+  .team-card {
+    background: rgba(26,37,64,0.5);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .team-card:hover { border-color: rgba(201,151,42,0.4); transform: translateY(-3px); }
+  .team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.2rem;
+    background: linear-gradient(135deg, var(--navy-light), rgba(201,151,42,0.15));
+    border: 2px dashed rgba(201,151,42,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+  }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .team-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); margin-bottom: 0.3rem; }
+  .team-role { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 1rem; }
+  .team-bio { font-size: 0.88rem; color: rgba(247,245,240,0.7); line-height: 1.65; }
+
+  /* ── PARTNERS ── */
+  .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .partner-card {
+    aspect-ratio: 1 / 1;
+    background: rgba(26,37,64,0.4);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .partner-card:hover { border-color: rgba(201,151,42,0.4); background: rgba(26,37,64,0.6); }
+  .partner-logo {
+    width: 70px; height: 70px;
+    border-radius: 12px;
+    background: rgba(201,151,42,0.08);
+    border: 1px dashed rgba(201,151,42,0.4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .partner-logo img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+  .partner-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(247,245,240,0.85); }
+
+  /* ── STATS ── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 3rem 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-cell { padding: 2rem; text-align: center; border-right: 1px solid var(--border); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-top: 0.4rem; font-weight: 600; }
+
+  /* ── CTA STRIP ── */
+  .cta-strip {
+    background: linear-gradient(135deg, rgba(201,151,42,0.12) 0%, rgba(11,17,32,0.5) 100%);
+    border: 1px solid rgba(201,151,42,0.3);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    margin-top: 4rem;
+  }
+  .cta-strip h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1.1; margin-bottom: 1rem; color: var(--white); }
+  .cta-strip h3 span { color: var(--gold); }
+  .cta-strip p { color: rgba(247,245,240,0.72); margin-bottom: 1.8rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: var(--navy); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.95rem 2.2rem; border-radius: 6px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .cta-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+
+  @media (max-width: 880px) {
+    .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .team-grid.leadership-grid { grid-template-columns: 1fr; max-width: 360px; margin-left: auto; margin-right: auto; }
+    .team-grid.advisors-grid { grid-template-columns: 1fr 1fr; }
+    .partners-grid { grid-template-columns: repeat(3, 1fr); }
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: 1px solid var(--border); }
+  }
+  @media (max-width: 560px) {
+    .about-hero { padding: 7rem 5% 4rem; }
+    .section { padding: 4rem 5%; }
+    .team-grid.leadership-grid { grid-template-columns: 1fr; }
+    .team-grid.advisors-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── FULL FOOTER ── */
+  footer {
+    background: #080e1c;
+    border-top: 1px solid var(--border);
+    padding: 4rem 5% 2rem;
+    text-align: left;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .footer-brand p { font-size: 0.88rem; color: rgba(247,245,240,0.65); margin: 1rem 0 1.5rem; line-height: 1.65; max-width: 280px; }
+  .footer-brand
+  .footer-brand
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gray);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; padding: 0; margin: 0; }
+  .footer-col ul li { margin: 0; }
+  .footer-col ul li a {
+    text-decoration: none; color: rgba(247,245,240,0.62);
+    font-size: 0.88rem; transition: color 0.2s;
+    border-bottom: none;
+  }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: rgba(247,245,240,0.5);
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom a { color: rgba(247,245,240,0.5); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+  .social-links { display: flex; gap: 0.75rem; }
+  .social-link {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(247,245,240,0.7);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .social-link:hover {
+    background: rgba(201,151,42,0.1);
+    border-color: rgba(201,151,42,0.3);
+    color: var(--gold);
+  }
+  @media (max-width: 880px) {
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+  @media (max-width: 560px) {
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+
+  /* ── FULL NAVBAR (synced with homepage) ── */
+  .mobile-menu a:active,
+
+  @media (max-width: 880px) {
+  }
+
+
+  /* ── ACTIVE NAV LINK (current page) ── */
+
+  /* ── NAVBAR (canonical, identical across all pages) ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(11, 17, 32, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+  .nav-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  .nav-brand span { color: var(--gold); display: block; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links li { display: flex; align-items: center; margin: 0; }
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(247,245,240,0.72);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    border-bottom: none;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 6px;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 0 0 1px rgba(201,151,42,0.5), 0 0 18px rgba(201,151,42,0.35), 0 4px 14px rgba(201,151,42,0.25);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+  }
+  .nav-cta:hover {
+    background: var(--gold-light) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(232,184,75,0.6), 0 0 28px rgba(232,184,75,0.55), 0 6px 20px rgba(201,151,42,0.4);
+  }
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+
+  /* Active state for current page / scroll-spy */
+  .nav-links a.nav-active {
+    color: var(--gold) !important;
+    position: relative;
+  }
+  .nav-links a.nav-active::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(8,14,28,0.98);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+    padding: 0.4rem 1rem;
+    border-bottom: none;
+  }
+  .mobile-menu a:active,
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-menu a.nav-active { color: var(--gold) !important; }
+  .mobile-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 5%;
+    background: rgba(247,245,240,0.06);
+    border: 1px solid rgba(247,245,240,0.12);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .mobile-close:hover {
+    background: rgba(201,151,42,0.15);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+  /* ── END NAVBAR ── */
+
+
+  /* ── MOBILE MENU TAP/ACTIVE STATE ── */
+  .mobile-menu a {
+    color: var(--white);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:active,
+  .mobile-menu a:focus,
+  .mobile-menu a:hover { color: var(--gold) !important; }
+  .mobile-menu a.nav-active { color: var(--gold) !important; }
+
+  /* ── GET THE APP BUTTON IN MOBILE MENU ── */
+  .mobile-menu a.mobile-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 0.85rem 2.4rem !important;
+    border-radius: 999px !important;
+    font-family: 'Inter', 'Barlow Condensed', sans-serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    margin-top: 1.5rem;
+    box-shadow: 0 0 0 1px rgba(201,151,42,0.55), 0 0 28px rgba(201,151,42,0.45), 0 6px 22px rgba(201,151,42,0.3);
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+  }
+  .mobile-menu a.mobile-cta:active,
+  .mobile-menu a.mobile-cta:focus,
+  .mobile-menu a.mobile-cta:hover {
+    background: var(--gold-light) !important;
+    color: var(--navy) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(232,184,75,0.7), 0 0 36px rgba(232,184,75,0.6), 0 8px 26px rgba(201,151,42,0.45);
+  }
+
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+  <a href="index.html#features" onclick="closeMobileMenu()">Features</a>
+  <a href="index.html#how-it-works" onclick="closeMobileMenu()">How It Works</a>
+  <a href="index.html#calculator" onclick="closeMobileMenu()">Earnings</a>
+  <a href="index.html#pricing" onclick="closeMobileMenu()">Pricing</a>
+  <a href="about.html" class="nav-active" onclick="closeMobileMenu()">About</a>
+  <a href="index.html#contact" onclick="closeMobileMenu()">Contact</a>
+  <a href="index.html#download" onclick="closeMobileMenu()" class="mobile-cta">Get the App</a>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/image-01.jpg" alt="ITG Logo" style="width:40px;height:40px;object-fit:contain;border-radius:6px;">
+    <div class="nav-brand">Inside the<span>Grind</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="index.html#calculator">Earnings</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="about.html" class="nav-active">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html#download" class="nav-cta">Get the App</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+
+<!-- NAV -->
+
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="about-hero-inner">
+    <div class="section-label" style="justify-content:center;">Our Story</div>
+    <h1>Built For The <span>Grind.</span></h1>
+    <p class="lead">Inside the Grind was born from a simple belief — that athletes deserve to own their narrative, build their fan base on their own terms, and earn directly from the journey they're already on.</p>
+  </div>
+</section>
+
+<!-- THE STORY -->
+<section class="section">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-text">
+        <div class="section-label">The Beginning</div>
+        <h2 class="section-title">Why We <span>Built This.</span></h2>
+        <p>Inside the Grind was founded in <strong>2025</strong> with a clear mission — to give athletes a platform that finally puts them in control. We saw athletes pouring everything into their craft while others profited from their stories.</p>
+        <p>Traditional NIL deals required brand deals, agents, and gatekeepers. Social media platforms took the lion's share of revenue and dictated what content got seen. Athletes deserved better.</p>
+        <p>So we built a platform where the journey <em>is</em> the product — where journals, live streams, and authentic moments become a sustainable income stream, owned and controlled by the athlete.</p>
+        <p><strong>Our promise:</strong> athletes always keep 80% of every dollar earned. No exceptions. No fine print.</p>
+      </div>
+      <div class="story-image">
+        <img src="images/about-story.jpg" alt="Inside the Grind">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section section-mid">
+  <div class="section-inner text-center">
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-title">Our Core <span>Values.</span></h2>
+    <p class="section-sub">Three principles that guide every decision we make — from product design to partnerships.</p>
+
+    <div class="values-grid">
+      <div class="value-card" style="text-align:left;">
+        <span class="value-num">01</span>
+        <h3>Athletes First.</h3>
+        <p>Every feature, every policy, every partnership is built to serve the athlete. If it doesn't help athletes win, it doesn't ship.</p>
+      </div>
+      <div class="value-card" style="text-align:left;">
+        <span class="value-num">02</span>
+        <h3>Authentic Stories.</h3>
+        <p>Real journeys, raw moments, honest training days. We don't filter the grind — we celebrate it. The behind-the-scenes is the value.</p>
+      </div>
+      <div class="value-card" style="text-align:left;">
+        <span class="value-num">03</span>
+        <h3>Fair Economics.</h3>
+        <p>80% to the athlete. Always. Transparent payouts, no hidden fees, no surprise deductions. The grind belongs to the grinder.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section">
+  <div class="section-inner text-center">
+    <div class="section-label">The People Behind ITG</div>
+    <h2 class="section-title">Meet The <span>Team.</span></h2>
+    <p class="section-sub">A team of builders, athletes, and storytellers united by one mission — putting power back in the hands of those doing the work.</p>
+
+    <!-- LEADERSHIP -->
+    <div class="team-section-sub">Driving the Vision</div>
+    <div class="team-section-label">Leadership</div>
+    <div class="team-grid leadership-grid">
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team-founder.jpg" alt="Christopher Barrett Sr">
+        </div>
+        <div class="team-name">Christopher Barrett Sr</div>
+        <div class="team-role">Founder &amp; CEO</div>
+        <p class="team-bio">Former USC Football National Champion turned coach, mentor, and entrepreneur, Chris Barrett has dedicated his life to helping athletes grow both on and off the field. A 2x National Champion and 4x Pac-10 Champion at USC Trojans football, Barrett went on to build a reputation as a respected coach, educator, and leader in Arizona athletics.
+
+From coaching high school football to mentoring athletes through life, Chris has always believed that every athlete has a story bigger than the scoreboard. That vision led him to create ITG (Inside The Grind) — a platform built to give athletes an authentic space to share their journey, build their brand, connect with fans, and monetize their content in a real way.
+
+Known for his passion, energy, and commitment to helping the next generation, Barrett continues to bridge the gap between sports, mentorship, branding, and opportunity for athletes across all levels.</p>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team-cofounder.jpg" alt="Jason Thomas">
+        </div>
+        <div class="team-name">Jason Thomas</div>
+        <div class="team-role">Co-Founder &amp; COO</div>
+        <p class="team-bio">Former JUCO and D1 football athlete at Northern Arizona University who knows the athlete grind firsthand. Built on sacrifice, discipline, and hard work. With a background in sales and marketing Jason has a passion for helping athletes tell their story.</p>
+      </div>
+
+    </div>
+
+    <!-- ADVISORY BOARD -->
+    <div class="team-section-sub">Guiding the Mission</div>
+    <div class="team-section-label">Advisory Board</div>
+    <div class="team-grid advisors-grid">
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team-advisor-1.jpg" alt="Ben Jay">
+        </div>
+        <div class="team-name">Ben Jay</div>
+        <div class="team-role">Advisor</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team-advisor-2.jpg" alt="Dr. Michael Gervais">
+        </div>
+        <div class="team-name">Dr. Michael Gervais</div>
+        <div class="team-role">Advisor</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team-advisor-3.jpg" alt="Stephen Campbell">
+        </div>
+        <div class="team-name">Stephen Campbell</div>
+        <div class="team-role">Advisor</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="images/team-advisor-marketing.jpg" alt="Andrew Kossoff">
+        </div>
+        <div class="team-name">Andrew Kossoff</div>
+        <div class="team-role">Marketing Advisor</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS (commented out — no partners yet, will add when partnerships are confirmed) -->
+<section class="section section-mid">
+  <div class="section-inner text-center">
+    <!--
+    <div class="section-label">Trusted By</div>
+    <h2 class="section-title">Our <span>Partners.</span></h2>
+    <p class="section-sub">We're proud to work with leading organizations supporting the future of athlete empowerment.</p>
+
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-logo">
+          <span>P1</span>
+        </div>
+        <div class="partner-name">[Partner 1]</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <span>P2</span>
+        </div>
+        <div class="partner-name">[Partner 2]</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <span>P3</span>
+        </div>
+        <div class="partner-name">[Partner 3]</div>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">
+          <span>P4</span>
+        </div>
+        <div class="partner-name">[Partner 4]</div>
+      </div>
+    </div>
+    -->
+
+    <div class="stats-strip">
+      <div class="stat-cell">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Athletes Onboarded</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Active Subscribers</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">80%</div>
+        <div class="stat-label">Revenue to Athletes</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Sports Covered</div>
+      </div>
+    </div>
+
+    <div class="cta-strip">
+      <h3>Want To <span>Partner</span> With Us?</h3>
+      <p>Brands, schools, agencies, and organizations — let's build the future of athlete empowerment together.</p>
+      <a href="index.html#contact" class="cta-btn">Get In Touch →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top" style="max-width:1300px; margin:auto;">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="margin-bottom:0.8rem; display:inline-flex; align-items:center; gap:0.7rem; text-decoration:none;">
+        <img src="images/image-48.jpg" alt="ITG Logo" style="width:36px;height:36px;object-fit:contain;border-radius:5px;">
+        <div class="nav-brand" style="font-size:1rem;">Inside the<span>Grind</span></div>
+      </a>
+      <p>The only platform where athletes turn their daily grind into real income — and fans get the authentic access they've always wanted.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="X / Twitter"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://instagram.com/insidethegrindapp" target="_blank" rel="noopener" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+        <a href="#" class="social-link" aria-label="YouTube"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Platform</h4>
+      <ul>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#calculator">Earnings</a></li>
+        <li><a href="index.html#pricing">Pricing</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About ITG</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="account-deletion.html">Account Deletion</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom" style="max-width:1300px; margin:auto;">
+    <span>© 2026 Inside the Grind. All rights reserved.</span>
+    <span>Made for athletes who refuse to quit.</span>
+  </div>
+</footer>
+
+
+<script>
+  function openMobileMenu() {
+    applyMobileActive();
+    document.getElementById('mobileMenu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function applyMobileActive() {
+    const last = sessionStorage.getItem('itg_mobile_last');
+    // Only highlight if not already a static current-page nav-active
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      // Don't strip existing static nav-active set in HTML for current page
+      if (!a.hasAttribute('data-static-active')) a.classList.remove('nav-active');
+    });
+    if (last) {
+      const target = document.querySelector('.mobile-menu a[href="' + last + '"]');
+      if (target && !target.classList.contains('mobile-cta')) {
+        target.classList.add('nav-active');
+      }
+    }
+  }
+  // Remember last tapped link (skip Get the App)
+  document.querySelectorAll('.mobile-menu a').forEach(a => {
+    if (a.classList.contains('mobile-cta')) return;
+    a.addEventListener('click', () => {
+      const href = a.getAttribute('href');
+      if (href) sessionStorage.setItem('itg_mobile_last', href);
+    });
+  });
+  // Mark static current-page nav-active so memory function doesn't strip it
+  document.querySelectorAll('.mobile-menu a.nav-active').forEach(a => a.setAttribute('data-static-active', '1'));
+
+  document.getElementById('mobileMenu')?.addEventListener('click', function(e) {
+    if (e.target === this) closeMobileMenu();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) closeMobileMenu();
+  });
+</script>
+
+</body>
+</html>
